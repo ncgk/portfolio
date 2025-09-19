@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nico - Strategic Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .fade-in-section {
+            padding-top: 2rem;
+            filter: blur(16px);
+            opacity: 0;
+            /* Timings für opening transition */
+            transition:
+                opacity     0.5s ease-in-out,
+                filter      0.5s ease-in-out,
+                padding-top 3.0s ease-in-out;
+        }
+
+        .fade-in-section.visible {
+            padding-top: 0rem;
+            filter: blur(0);
+            opacity: 1;
+        }
+
+        .top-fade-in {
+            transition: margin-top 1s ease-in-out; /* Timing für fade nach oben nachdem text getippt wurde */
+            margin-top: 8rem;
+        }
+
+        .top-fade-in.fade-in-distance {
+            margin-top: 50vh;
+        }
+
+        .top-fade-in-text {
+            margin-top: -5rem;
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-100">
+    <div class="flex flex-col justify-center min-h-screen p-8 md:p-12 top-fade-in fade-in-distance" id="fade-in-container">
+        <div class="max-w-4xl mx-auto w-full top-fade-in-text">
+            <div class="h-20">
+                 <h1 id="typewriter" class="text-4xl md:text-6xl lg:text-7xl font-[600]"></h1>
+            </div>
+            <div id="fade-content" class="fade-in-section mt-24 text-[##EDEBE3]">
+                <p class="text-4xl md:text-6xl lg:text-7xl font-[600] leading-[1.5] md:leading-[1.5] lg:leading-[1.65]">
+                    a <span class="text-[#FF6D01]">Strategic Designer</span>,<br>
+                    studying <span class="text-[#F290EE]">Philosophy</span>,<br>
+                    while <span class="text-[#259918]">UX freelancing</span>.
+                </p>
+                <p class="mt-12 text-4xl md:text-6xl lg:text-7xl font-[600] leading-[1.5] md:leading-[1.5] lg:leading-[1.65]">
+                    With a polyoriginal lens informed by design & philosophy I specialize in translating abstract ideas into tangible product designs.
+                </p>
+                <p class="mt-12 text-4xl md:text-6xl lg:text-7xl font-[600] leading-[1.5] md:leading-[1.5] lg:leading-[1.65]">
+                    Explore some <span class="text-[#4433FF] projectSection">projects*</span> dear to my heart...
+                </p>
+                <div class="flex flex-row gap-[2rem] mt-20">
+                    <a href="https://drive.google.com/file/d/13jOAWTVK3M7N2TlWYL7c0vSqPfheRviD/view?usp=share_link" class="grow"> <!-- Replace Link here -->
+                        <button class="border border-solid border-white w-full h-[16rem]">
+                            <svg width="133" height="132" viewBox="0 0 133 132" fill="none" xmlns="http://www.w3.org/2000/svg" class="m-auto">
+                                <path d="M41.75 24.75V33H93.6838L25.25 101.434L31.0662 107.25L99.5 38.8162V90.75H107.75V24.75H41.75Z" fill="#FF6D01"/>
+                            </svg>
+                            Freelance Projects
+                        </button>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/12OCiv8qn6ld5y_JtWqCGF50KvcnPms_c?usp=share_link" class="grow"> <!-- Replace Link here -->
+                        <button class="border border-solid border-white w-full h-[16rem]">
+                            <svg width="133" height="132" viewBox="0 0 133 132" fill="none" xmlns="http://www.w3.org/2000/svg" class="m-auto">
+                                <path d="M41.75 24.75V33H93.6838L25.25 101.434L31.0662 107.25L99.5 38.8162V90.75H107.75V24.75H41.75Z" fill="#259918"/>
+                            </svg>
+                            Master Thesis & Essays
+                        </button>
+                    </a>
+                </div>
+                <p class="my-8 font-mono text-slate-600">
+                    *Temporarily as PDFs and a Drive folder – new version is under construction :)
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            window.scrollTo(0, 0);
+
+            const typewriterElement = document.getElementById('typewriter');
+            const fadeContentElement = document.getElementById('fade-content');
+            const fadeInContainerElement = document.getElementById('fade-in-container')
+            
+            const textToType = "Hi, I am Nico,";
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < textToType.length) {
+                    typewriterElement.textContent += textToType.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 100); // Zeit in ms die jeder Buchstabe braucht um zu erscheinen
+                } else {
+                    setTimeout(() => {
+                        fadeContentElement.classList.add('visible');
+                        fadeInContainerElement.classList.remove('fade-in-distance');
+                    }, 700); // Zeit in ms nachdem Intro text erschienen ist bis restlicher content anfängt einzufaden
+                }
+            }
+            type();
+        };
+    </script>
+
+</body>
+</html>
